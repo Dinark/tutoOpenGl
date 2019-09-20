@@ -16,8 +16,7 @@ Triangle::~Triangle()
 
 void Triangle::Create()
 {
-	//the arrays of vbo
-	unsigned int vao;
+
 
 	// buffers of vertex
 	unsigned int vbo;
@@ -41,22 +40,22 @@ void Triangle::Create()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
+	vbos.push_back(vbo);
+
 	//Mise de la list dans le buffer
 	glBufferData(GL_ARRAY_BUFFER, //Type
 		sizeof(Vertex) * 3, // Taille
 		&vertices[0], // premier element
 		GL_STATIC_DRAW);
-
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+		(void*)0);
 	//remise a zero de letat des arrays
-	glDisableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
 
-	glVertexAttribPointer(0, //le numero du parametre
-		3, // nombre de parametres R G B
-		GL_FLOAT, // type de données  
-		GL_FALSE, // normalisation ?
-		sizeof(Vertex),
-		(void*)0) // offet du premier parametre
-		;
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+		(void*)(offsetof(Vertex, Vertex::color)));
+	glBindVertexArray(0);
 }
 
 void Rendering::Models::Triangle::update()

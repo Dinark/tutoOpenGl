@@ -31,15 +31,14 @@ SceneManager::~SceneManager()
 
 void Managers::SceneManager::notifyBeginFrame()
 {
+	modelsManager->update();
 }
 
 void Managers::SceneManager::notifyDisplayFrame()
 {
-	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	modelsManager->draw();
-	
 }
 
 void Managers::SceneManager::notifyEndFrame()

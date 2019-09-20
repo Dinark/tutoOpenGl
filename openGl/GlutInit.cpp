@@ -25,8 +25,6 @@ void Core::Init::GlutInit::init(Core::ContextInfo contextInfo,
 void Core::Init::GlutInit::init(Core::ContextInfo contextInfo, Core::WindowsInfo windowsInfo, Core::FrameBufferInfo frameBufferInfo, Argument &argument)
 {
 
-	glutInit(&argument.argc, argument.argv);
-	/*
 	GlutInit::windowInfo = windowInfo;
 	//GLUT INIT
 	glutInit(&argument.argc, argument.argv);
@@ -68,7 +66,6 @@ void Core::Init::GlutInit::init(Core::ContextInfo contextInfo, Core::WindowsInfo
 
 	//INFO WRITING
 	GlutInit::printOpenGLInfo(windowsInfo, contextInfo);
-	*/
 
 }
 
@@ -117,8 +114,8 @@ void Core::Init::GlutInit::displayCallback(void)
 	if (!listener)
 		return;
 
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glClearColor(0.0, 0.0, 0.5, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.0, 0.0, 0.5, 1);
 	listener->notifyBeginFrame();
 	listener->notifyDisplayFrame();
 	glutSwapBuffers();
